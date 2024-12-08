@@ -34,3 +34,5 @@ public class SammyCylinder : MonoBehaviour
         transform.position = transform.position + movementDirection * moveStep;
     }
 }
+
+//add a speed limit of 8, side to side movement, and s as a slow down or stop button.

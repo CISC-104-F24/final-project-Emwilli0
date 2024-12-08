@@ -58,3 +58,5 @@ public class KevinCube : MonoBehaviour
         }
     }
 }
+
+//add a jump cooldown so there isn't infinite jumping
