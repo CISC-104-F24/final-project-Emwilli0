@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Title Scene.unity
+    guid: 5255d47e3c7dd124596eac8d1c696660
+  - enabled: 1
+    path: Assets/Scenes/DLC Scene.unity
+    guid: 6c6c79ea4bbbdbb4d82fc6b94ffb515d
+  - enabled: 1
+    path: Assets/Scenes/FinalProject.unity
+    guid: 1e91b72cbac25ab42902b77b5fd51fab
+  - enabled: 1
+    path: Assets/Scenes/Kevin Victory.unity
+    guid: 55c9eeecd7ebf1747962d425a5ea1107
+  - enabled: 1
+    path: Assets/Scenes/Sam Victory.unity
+    guid: 54244942b069d6c4181201d8c5d87be9
   m_configObjects: {}

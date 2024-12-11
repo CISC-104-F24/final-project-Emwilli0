@@ -6,6 +6,8 @@ public class KevinCube : MonoBehaviour
 {
     public float moveSpeed = 4f;
     public float jumpPower = 6f;
+    public float timeSinceJump = 0;
+    public float jumpCooldown = 2f;
     Vector3 movementDirection;
 
     // Start is called before the first frame update
@@ -43,20 +45,21 @@ public class KevinCube : MonoBehaviour
             }
 
             //jump code
-            bool jumpPowerPressed = Input.GetKeyDown(KeyCode.Space);
-            if (jumpPowerPressed)
+            bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
+            if (jumpPressed)
             {
                 Rigidbody myRb = GetComponent<Rigidbody>();
                 myRb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+                timeSinceJump = 0;
             }
 
             //jump cooldown code
-
+            timeSinceJump += Time.deltaTime;
+            if (timeSinceJump < jumpCooldown)
             {
-
+                jumpPressed = false;
             }
+
         }
     }
 }
-
-//add a jump cooldown so there isn't infinite jumping
