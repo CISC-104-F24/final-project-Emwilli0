@@ -1,20 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KevinCube : MonoBehaviour
 {
     public float moveSpeed = 4f;
     public float jumpPower = 6f;
     public float timeSinceJump = 0;
-    public float jumpCooldown = 2f;
+    public float jumpCooldown = 1.25f;
     Vector3 movementDirection;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -46,6 +41,12 @@ public class KevinCube : MonoBehaviour
 
             //jump code
             bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
+            
+            if (timeSinceJump < jumpCooldown)
+            {
+                jumpPressed = false;
+            }
+
             if (jumpPressed)
             {
                 Rigidbody myRb = GetComponent<Rigidbody>();
@@ -53,13 +54,15 @@ public class KevinCube : MonoBehaviour
                 timeSinceJump = 0;
             }
 
-            //jump cooldown code
             timeSinceJump += Time.deltaTime;
-            if (timeSinceJump < jumpCooldown)
-            {
-                jumpPressed = false;
-            }
+            
 
         }
     }
+
+    private void OnTriggerEnter()
+    {
+        if (CompareTag("Kevin")) Debug.Log("Kevin has made it halfway!");
+    }
+
 }

@@ -5,18 +5,12 @@ using UnityEngine;
 public class SammyCylinder : MonoBehaviour
 {
     public float voteReceived;
+    public float moveSpeed = 1f;
     public float speedPerVote = 0.01f;
     public float baseSpeed = 1.0f;
     public Vector3 movementDirection = new Vector3(0f, 0f, 1f);
     public KeyCode voteKey = KeyCode.W;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         //movement code
@@ -32,7 +26,34 @@ public class SammyCylinder : MonoBehaviour
         float moveStep = (baseSpeed + voteReceived + speedPerVote) * Time.deltaTime;
 
         transform.position = transform.position + movementDirection * moveStep;
-    }
-}
 
-//add a speed limit of 8, side to side movement, and s as a slow down or stop button.
+        if (voteReceived >= 2f)
+        {
+            voteReceived = 2f;
+        }
+
+        bool rightPressed = Input.GetKey(KeyCode.D);
+        if (rightPressed)
+        {
+            transform.position = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
+        }
+
+        bool leftPressed = Input.GetKey(KeyCode.A);
+        if (leftPressed)
+        {
+            transform.position = transform.position + Vector3.left * moveSpeed * Time.deltaTime;
+        }
+
+        bool slowDown = Input.GetKeyDown(KeyCode.S);
+        if (slowDown)
+        {
+            voteReceived = voteReceived - 0.1f;
+        }
+
+    }
+    private void OnTriggerEnter()
+    {
+        if (CompareTag("Sammy")) Debug.Log("Sammy has made it halfway!");
+    }
+
+}
